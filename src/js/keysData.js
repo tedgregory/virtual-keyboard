@@ -68,7 +68,7 @@ export const KEY_CODES = {
   ArlineLeft: getLetter("🠔", "🠔", "🠔", "🠔"),
   ArlineDown: getLetter("🠗", "🠗", "🠗", "🠗"),
   ArlineRight: getLetter("🠖", "🠖", "🠖", "🠖"),
-  ControlRight: getSpecial("Ctrl", ["key_flex"]),
+  ControlRight: getSpecial("Ctrl", []),
 };
 
 export const KEYBOARD_MAP = [

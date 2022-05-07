@@ -10,15 +10,16 @@ export class Keyboard {
     this.isCtrl = false;
     this.isCapsLock = false;
     this.isMouseClicked = false;
-    this.lang = "en";
+    this.lang = localStorage.getItem("lang") || "en";
     this.domElements = {};
-    this.domElements.keys = [];
+    this.domElements.keyBase = {};
   }
   initKeyboard = () => {
     this.createWrapper();
     this.createInput();
     this.createKeyboard();
     this.setKeysText();
+    this.initClickHandlers();
   };
   createWrapper = (className = KEYBOARD_WRAPPER_CLASS) => {
     let wrapper = createDomNode("section", "", [className]);
@@ -49,15 +50,16 @@ export class Keyboard {
     let lineWrapper = createDomNode("div", "", ["keyboard-area__line"]);
     keysLine.forEach((code) => {
       let newKeyObj = new KeyBuilder(code);
-      this.domElements.keys.push(newKeyObj);
+      this.domElements.keyBase[`${code}`] = newKeyObj;
       lineWrapper.append(newKeyObj.getNode());
     });
     return lineWrapper;
   };
   setKeysText = () => {
-    this.domElements.keys.forEach( key => {
+    let keyStorage = this.domElements.keyBase;
+    Object.keys(keyStorage).forEach((keyCode) => {
+      let key = keyStorage[`${keyCode}`];
       if (!key.keyData.en) return;
-      console.log(key.node);
       if (this.isShift) {
         if (this.isCapsLock && !key.keyData.noCaps) {
           key.node.innerText = key.keyData[`${this.lang}`].normal;
@@ -72,5 +74,37 @@ export class Keyboard {
         }
       }
     });
+  };
+  initClickHandlers = () => {
+    let keyStorage = this.domElements.keyBase;
+    Object.keys(keyStorage).forEach((keyCode) => {
+      let key = this.domElements.keyBase[`${keyCode}`].getNode();
+      key.addEventListener("mousedown", (e) => this.handleKeyEvent(e));
+      key.addEventListener("mouseup", (e) => this.handleKeyEvent(e));
+      key.addEventListener("mouseout", (e) => this.handleKeyEvent(e));
+    });
+    document.body.addEventListener("keydown", (e) => this.handleKeyEvent(e));
+    document.body.addEventListener("keyup", (e) => this.handleKeyEvent(e));
+  };
+  handleKeyEvent(event) {
+    let currentKey = this.domElements.keyBase[`${(event.code || event.target.dataset.keyCode)}`].getNode();
+    if (["keydown","mousedown"].includes(event.type)) {
+      currentKey.classList.add("pressed");
+    } else if (["keyup","mouseup","mouseout"].includes(event.type)) {
+      currentKey.classList.remove("pressed");
+    }
+    //if phisical key pressed
+    if (event.code) {
+      //let currentKey = this.domElements.keyBase[event.code].getNode();
+      this.domElements.textArea.value = currentKey.toString();
+    }
+    this.domElements.textArea.value = currentKey.classList;
+  }
+
+  capslockHandler = () => {};
+
+  switchInputLanguage = () => {
+    this.lang = this.lang === "en" ? "ru" : "en";
+    localStorage.setItem("lang", this.lang);
   };
 }
