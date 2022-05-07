@@ -1,0 +1,98 @@
+$color-bg-light: #f5f5f5;
+$color-bg-shadow: #ccc;
+$color-bg-shadowl: #eee;
+$color-key-text: #333;
+$color-light-s: #fafafa;
+$color-light-l: #f6f6f6;
+$color-light-xl: #ffffff;
+$color-dark-s: #cdcdcd;
+$color-dark-3xl: #292929;
+$color-dark-l: #545454;
+$color-dark-xl: #4c4c4c;
+$color-dark-m: #b2b2b2;
+
+%box-shadow-panel {
+  box-shadow: 0px 0px 1px $color-dark-m, 1px 1px 3px $color-dark-m,
+    1px 1px 5px $color-light-l inset;
+  border: 1px solid $color-light-xl;
+}
+
+.keyboard {
+  min-width: 900px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  h1, h2 {
+    text-align: center;
+    @extend %font-sans-serif;
+    @include font(1.3rem, 600, normal, 3rem);
+  }
+}
+.keyboard-text {
+  @extend %box-shadow-panel;
+  background-color: $color-light-s;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  width: 900px;
+}
+textarea.keyboard-input {
+  display: block;
+  width: 97%;
+  padding: 10px;
+  height: 100px;
+  resize: none;
+  border: 1px solid $color-dark-m;
+  outline: none;
+  border-radius: 10px;
+  background-color: $color-bg-shadowl;
+  &:focus {
+    border-color: transparent !important;
+  }
+}
+.keyboard-area {
+  @extend %box-shadow-panel;
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: $color-light-l;
+  border-radius: 15px;
+  padding: 15px;
+}
+.keyboard-area__line {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.key {
+  @extend %box-shadow-panel;
+  @extend %font-sans-serif;
+  background-color: $color-light-s;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+  &:hover {
+    background-image: radial-gradient(
+      farthest-side,
+      $color-light-xl,
+      $color-light-l
+    );
+  }
+  &_flex {
+    flex: 1;
+  }
+  &_space {
+    min-width: 334px;
+  }
+}

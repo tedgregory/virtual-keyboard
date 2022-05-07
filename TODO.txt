@@ -1,0 +1,8 @@
+https://github.com/rolling-scopes-school/tasks/blob/master/tasks/virtual-keyboard/virtual-keyboard-en.md
+
+1. create a layout and styling
+2. make it all generated via js
+3. make it interactive, use OOP
+4. check for errors
+5. add alt, ctrl, caps lock functionality
+6. test it for compliance to the task
