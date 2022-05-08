@@ -2,9 +2,9 @@ import { createDomNode } from './keyboardHelpers.js';
 import { KEY_CODES } from './keysData.js';
 
 export default class KeyBuilder {
-  constructor(keyID) {
-    this.keyID = keyID;
-    this.keyData = KEY_CODES[keyID];
+  constructor(keyId) {
+    this.keyId = keyId;
+    this.keyData = KEY_CODES[keyId];
     this.node = this.setMarkup();
     this.currentValue = '';
     this.type = '';
@@ -24,7 +24,7 @@ export default class KeyBuilder {
       this.currentValue = this.keyData.currentValue;
       this.type = 'system';
     }
-    keyNode.dataset.keyID = this.keyID;
+    keyNode.dataset.keyId = this.keyId;
     return keyNode;
   };
 
@@ -41,7 +41,7 @@ export default class KeyBuilder {
     // currentValue = isCaps ? currentValue.toUpperCase() : currentValue.toLowerCase();
     let resultContent = `<div class="key__block-normal">${currentValue}</div>`;
     this.currentValue = currentValue;
-    if (!/(Key|Arline)\.?/.test(this.keyID) && !(/(Bracket|Semicolon|Quote|Comma|Period)\.?/.test(this.keyID) && lang === 'ru')) {
+    if (!/(Key|Arline)\.?/.test(this.keyId) && !(/(Bracket|Semicolon|Quote|Comma|Period)\.?/.test(this.keyId) && lang === 'ru')) {
       const unshifted = shifted === 'normal' ? 'shifted' : 'normal';
       resultContent += `<div class="key__block-shifted">${this.keyData[lang][unshifted]}</div>`;
     }

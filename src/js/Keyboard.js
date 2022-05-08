@@ -63,8 +63,8 @@ export default class Keyboard {
 
   setKeysText = () => {
     const keyStorage = this.domElements.keyBase;
-    Object.keys(keyStorage).forEach((keyID) => {
-      const key = keyStorage[`${keyID}`];
+    Object.keys(keyStorage).forEach((keyId) => {
+      const key = keyStorage[`${keyId}`];
       // if no text value => system key, don't touch
       if (!key.keyData.ru) return;
       if (this.isShift) {
@@ -77,8 +77,8 @@ export default class Keyboard {
 
   initClickHandlers = () => {
     const keyStorage = this.domElements.keyBase;
-    Object.keys(keyStorage).forEach((keyID) => {
-      const key = this.domElements.keyBase[`${keyID}`].getNode();
+    Object.keys(keyStorage).forEach((keyId) => {
+      const key = this.domElements.keyBase[`${keyId}`].getNode();
       key.addEventListener('mousedown', (e) => this.handleKeyEvent(e));
       key.addEventListener('mouseup', (e) => this.handleKeyEvent(e));
       key.addEventListener('mouseout', (e) => this.handleKeyEvent(e));
@@ -90,14 +90,14 @@ export default class Keyboard {
   handleKeyEvent(event) {
     event.preventDefault();
     const currentKey = this.domElements.keyBase[
-      `${event.code || event.currentTarget.closest('.key').dataset.keyID}`
+      `${event.code || event.currentTarget.closest('.key').dataset.keyId}`
     ];
     // handle shift press
-    if (['ShiftLeft', 'ShiftRight'].includes(currentKey.keyID)) {
+    if (['ShiftLeft', 'ShiftRight'].includes(currentKey.keyId)) {
       this.shiftHandler(event, currentKey);
-    } else if (['ControlLeft', 'ControlRight'].includes(currentKey.keyID)) {
+    } else if (['ControlLeft', 'ControlRight'].includes(currentKey.keyId)) {
       this.controlHandler(event, currentKey);
-    } else if (['CapsLock'].includes(currentKey.keyID)) {
+    } else if (['CapsLock'].includes(currentKey.keyId)) {
       this.capsLockHandler(event, currentKey);
     } else {
       currentKey.renderEvent(event);
