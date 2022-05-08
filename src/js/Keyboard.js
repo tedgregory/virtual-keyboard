@@ -59,18 +59,19 @@ export class Keyboard {
     let keyStorage = this.domElements.keyBase;
     Object.keys(keyStorage).forEach((keyCode) => {
       let key = keyStorage[`${keyCode}`];
+      //if no text value => system key, don't touch
       if (!key.keyData.en) return;
       if (this.isShift) {
         if (this.isCapsLock && !key.keyData.noCaps) {
-          key.node.innerText = key.keyData[`${this.lang}`].normal;
+          key.setContent(this.lang);
         } else {
-          key.node.innerText = key.keyData[`${this.lang}`].shifted;
+          key.setContent(this.lang, "shifted");
         }
       } else {
         if (this.isCapsLock && !key.keyData.noCaps) {
-          key.node.innerText = key.keyData[`${this.lang}`].shifted;
+          key.setContent(this.lang, "shifted");
         } else {
-          key.node.innerText = key.keyData[`${this.lang}`].normal;
+          key.setContent(this.lang);
         }
       }
     });
@@ -87,24 +88,99 @@ export class Keyboard {
     document.body.addEventListener("keyup", (e) => this.handleKeyEvent(e));
   };
   handleKeyEvent(event) {
-    let currentKey = this.domElements.keyBase[`${(event.code || event.target.dataset.keyCode)}`].getNode();
-    if (["keydown","mousedown"].includes(event.type)) {
-      currentKey.classList.add("pressed");
-    } else if (["keyup","mouseup","mouseout"].includes(event.type)) {
-      currentKey.classList.remove("pressed");
-    }
-    //if phisical key pressed
-    if (event.code) {
-      //let currentKey = this.domElements.keyBase[event.code].getNode();
-      this.domElements.textArea.value = currentKey.toString();
-    }
-    this.domElements.textArea.value = currentKey.classList;
-  }
+    event.preventDefault();
+    let currentKey =
+      this.domElements.keyBase[
+        `${event.code || event.currentTarget.closest(".key").dataset.keyCode}`
+      ];
+    //handle shift press
+    if (["ShiftLeft", "ShiftRight"].includes(currentKey.keyCode)) {
+      this.shiftHandler(event, currentKey);
+    } else if (["ControlLeft", "ControlRight"].includes(currentKey.keyCode)) {
+      this.controlHandler(event, currentKey);
+    } else currentKey.renderEvent(event);
+    this.updateTextField(event, currentKey);
 
-  capslockHandler = () => {};
+    //this.updateTextField(event, currentKey);
+  }
+  updateTextField = (event, key = null) => {
+    // update only after press, avoid duplication on key/mouseup
+    if (!["keydown", "mousedown"].includes(event.type)) return;
+    let currentValue = key ? key.currentValue : event.key || "";
+    const textArea = this.domElements.textArea;
+    let selection = {
+      start: textArea.selectionStart || 0,
+      end: textArea.selectionEnd || 0,
+      whole: textArea.value,
+      beforeSel:
+        textArea.value.substring(0, textArea.selectionStart) || textArea.value,
+      afterSel:
+        textArea.value.substring(
+          textArea.selectionEnd,
+          textArea.value.length
+        ) || "",
+    };
+    textArea.value = `${selection.beforeSel}${currentValue}${selection.afterSel}`;
+    textArea.selectionStart = selection.start + currentValue.length;
+    textArea.selectionEnd = textArea.selectionStart;
+    //console.log(typeof currentValue.length);
+  };
+  capsLockHandler = (event, key) => {};
+
+  shiftHandler = (event, key) => {
+    if (["mousedown", "keydown"].includes(event.type)) {
+      // if already pressed CTRL - flip locale
+      if (this.isCtrl) {
+        this.switchInputLanguage();
+      }
+      this.isShift = true;
+      // keep it pressed if pressed with mouse
+      if (event.type === "mousedown") {
+        if (!this.isMouseClicked) {
+          this.isMouseClicked = key;
+        } else if (this.isMouseClicked === key) {
+          this.isMouseClicked = false;
+          this.isShift = false;
+        }
+      }
+    } else if (["mouseup", "keyup", "mouseout"].includes(event.type)) {
+      if (this.isMouseClicked !== key) {
+        this.isShift = false;
+      }
+    }
+    this.setKeysText();
+    key.renderEvent(event, this.isMouseClicked === key);
+  };
+
+  controlHandler = (event, key) => {
+    if (["mousedown", "keydown"].includes(event.type)) {
+      // if already pressed Shift - flip locale
+      if (this.isShift) {
+        this.switchInputLanguage();
+        this.setKeysText();
+      }
+      this.isCtrl = true;
+      // keep it pressed if pressed with mouse
+      if (event.type === "mousedown") {
+        if (!this.isMouseClicked) {
+          this.isMouseClicked = key;
+        } else if (this.isMouseClicked === key) {
+          this.isMouseClicked = false;
+          this.isShift = false;
+        }
+      }
+    } else if (["mouseup", "keyup", "mouseout"].includes(event.type)) {
+      if (this.isMouseClicked !== key) {
+        this.isCtrl = false;
+      }
+    }
+    key.renderEvent(event, this.isMouseClicked === key);
+  };
 
   switchInputLanguage = () => {
     this.lang = this.lang === "en" ? "ru" : "en";
     localStorage.setItem("lang", this.lang);
+    this.isShift = false;
+    this.isCtrl = false;
   };
 }

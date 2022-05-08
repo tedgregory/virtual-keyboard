@@ -265,6 +265,7 @@ textarea.keyboard-input:focus {
 }
 
 .key {
+  position: relative;
   background-color: #fafafa;
   border-radius: 5px;
   height: 50px;
@@ -295,6 +296,14 @@ textarea.keyboard-input:focus {
 
 .key_space {
   min-width: 334px;
+}
+
+.key__block-shifted {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  color: #545454;
+  font-size: .6em;
 }
 
 .pressed {

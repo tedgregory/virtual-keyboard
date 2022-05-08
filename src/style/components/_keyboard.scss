@@ -74,6 +74,7 @@ textarea.keyboard-input {
 .key {
   @extend %box-shadow-panel;
   @extend %font-sans-serif;
+  position: relative;
   background-color: $color-light-s;
   border-radius: 5px;
   height: 50px;
@@ -93,6 +94,13 @@ textarea.keyboard-input {
   &_space {
     min-width: 334px;
   }
+}
+.key__block-shifted {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  color: $color-dark-l;
+  font-size: .6em;
 }
 .pressed {
   background-color: $color-light-green;

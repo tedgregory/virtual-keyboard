@@ -7,9 +7,11 @@ export function getLetter(ruNorm, ruShifted, enNorm, enShifted, classes, noCaps 
     noCaps: noCaps
   };
 }
-export function getSpecial(label, classes) {
+export function getSpecial(label, value = false, classes) {
   return {
     label: label,
+    currentValue: value,
+    isSystem : true,
     classes: classes,
   };
 }
