@@ -1,6 +1,6 @@
-import { Keyboard } from "./Keyboard.js";
+import Keyboard from './Keyboard';
 
 window.onload = () => {
-    const keyboard = new Keyboard();
-    keyboard.initKeyboard();
-}
+  const keyboard = new Keyboard();
+  keyboard.initKeyboard();
+};
