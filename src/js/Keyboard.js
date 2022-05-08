@@ -135,18 +135,18 @@ export class Keyboard {
       }
       this.isShift = true;
       // keep it pressed if pressed with mouse
-      if (event.type === "mousedown") {
-        if (!this.isMouseClicked) {
-          this.isMouseClicked = key;
-        } else if (this.isMouseClicked === key) {
-          this.isMouseClicked = false;
-          this.isShift = false;
-        }
-      }
+      // if (event.type === "mousedown") {
+      //   if (!this.isMouseClicked) {
+      //     this.isMouseClicked = key;
+      //   } else if (this.isMouseClicked === key) {
+      //     this.isMouseClicked = false;
+      //     this.isShift = false;
+      //   }
+      // }
     } else if (["mouseup", "keyup", "mouseout"].includes(event.type)) {
-      if (this.isMouseClicked !== key) {
+      //if (this.isMouseClicked !== key) {
         this.isShift = false;
-      }
+      //}
     }
     this.setKeysText();
     key.renderEvent(event, this.isMouseClicked === key);
@@ -161,18 +161,18 @@ export class Keyboard {
       }
       this.isCtrl = true;
       // keep it pressed if pressed with mouse
-      if (event.type === "mousedown") {
-        if (!this.isMouseClicked) {
-          this.isMouseClicked = key;
-        } else if (this.isMouseClicked === key) {
-          this.isMouseClicked = false;
-          this.isShift = false;
-        }
-      }
+      // if (event.type === "mousedown") {
+      //   if (!this.isMouseClicked) {
+      //     this.isMouseClicked = key;
+      //   } else if (this.isMouseClicked === key) {
+      //     this.isMouseClicked = false;
+      //     this.isShift = false;
+      //   }
+      // }
     } else if (["mouseup", "keyup", "mouseout"].includes(event.type)) {
-      if (this.isMouseClicked !== key) {
+      //if (this.isMouseClicked !== key) {
         this.isCtrl = false;
-      }
+      //}
     }
     key.renderEvent(event, this.isMouseClicked === key);
   };

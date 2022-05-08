@@ -43,9 +43,7 @@ export class KeyBuilder {
     if (["keydown", "mousedown"].includes(event.type)) {
       this.getNode().classList.add("pressed");
     } else if (["keyup", "mouseup", "mouseout"].includes(event.type)) {
-      if (!keep) {
         this.getNode().classList.remove("pressed");
-      } 
     }
   }
 }

@@ -27,7 +27,7 @@ export const KEY_CODES = {
   KeyI: getLetter("ш", "Ш", "i", "I"),
   KeyO: getLetter("щ", "Щ", "o", "O"),
   KeyP: getLetter("з", "З", "p", "P"),
-  BracketLeft: getLetter("х", "{", "[", "{"),
+  BracketLeft: getLetter("х", "Х", "[", "{"),
   BracketRight: getLetter("ъ", "Ъ", "]", "}"),
   Backslash: getLetter("\\", "/", "\\", "|"),
   Delete: getSpecial("Del", "", ["key_flex"]),
