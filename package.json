@@ -1,0 +1,29 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "RS School \"Vistual keyboard\"",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "npx": "^10.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tedgregory/virtual-keyboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tedgregory/virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/tedgregory/virtual-keyboard#readme"
+}

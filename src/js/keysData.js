@@ -1,4 +1,4 @@
-import { getLetter, getSpecial } from './keyboardHelpers';
+import { getLetter, getSpecial } from './keyboardHelpers.js';
 
 export const KEY_CODES = {
   // line 1
@@ -33,7 +33,7 @@ export const KEY_CODES = {
   Backslash: getLetter('\\', '/', '\\', '|'),
   Delete: getSpecial('Del', ['key_flex']),
   // line 3
-  CapsLock: getSpecial('CapsLock', ['key_capslock', 'key_flex']),
+  CapsLock: getSpecial('CapsLock', ['key__capslock', 'key_flex']),
   KeyA: getLetter('ф', 'Ф', 'a', 'A'),
   KeyS: getLetter('ы', 'Ы', 's', 'S'),
   KeyD: getLetter('в', 'В', 'd', 'D'),

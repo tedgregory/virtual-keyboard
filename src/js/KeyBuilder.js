@@ -1,10 +1,10 @@
-import { createDomNode } from './keyboardHelpers';
-import { KEY_CODES } from './keysData';
+import { createDomNode } from './keyboardHelpers.js';
+import { KEY_CODES } from './keysData.js';
 
 export default class KeyBuilder {
-  constructor(keyCode) {
-    this.keyCode = keyCode;
-    this.keyData = KEY_CODES[keyCode];
+  constructor(keyID) {
+    this.keyID = keyID;
+    this.keyData = KEY_CODES[keyID];
     this.node = this.setMarkup();
     this.currentValue = '';
     this.type = '';
@@ -24,20 +24,26 @@ export default class KeyBuilder {
       this.currentValue = this.keyData.currentValue;
       this.type = 'system';
     }
-    keyNode.dataset.keyCode = this.keyCode;
+    keyNode.dataset.keyID = this.keyID;
     return keyNode;
   };
 
   getNode = () => this.node;
 
-  setContent = (lang, shifted = 'normal') => {
-    let resultContent = `<div class="key__block-normal">${this.keyData[lang][shifted]}</div>`;
-    this.currentValue = this.keyData[`${lang}`][`${shifted}`];
-    if (!/(Key|Arline)\.?/.test(this.keyCode)) {
+  setContent = (lang, shifted = 'normal', isCaps = false) => {
+    let currentValue = this.keyData[`${lang}`][`${shifted}`];
+    if (isCaps) {
+      currentValue = currentValue.toUpperCase();
+      if (shifted === 'shifted') {
+        currentValue = currentValue.toLowerCase();
+      }
+    }
+    // currentValue = isCaps ? currentValue.toUpperCase() : currentValue.toLowerCase();
+    let resultContent = `<div class="key__block-normal">${currentValue}</div>`;
+    this.currentValue = currentValue;
+    if (!/(Key|Arline)\.?/.test(this.keyID) && !(/(Bracket|Semicolon|Quote|Comma|Period)\.?/.test(this.keyID) && lang === 'ru')) {
       const unshifted = shifted === 'normal' ? 'shifted' : 'normal';
-      resultContent += `<div class="key__block-shifted">${
-        this.keyData[lang][unshifted]
-      }</div>`;
+      resultContent += `<div class="key__block-shifted">${this.keyData[lang][unshifted]}</div>`;
     }
     this.getNode().innerHTML = resultContent;
   };
