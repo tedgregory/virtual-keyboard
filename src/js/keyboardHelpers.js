@@ -20,6 +20,6 @@ export function createDomNode(tagName = 'div', innerText = false, classNames = [
   if (innerText) {
     newElement.innerText = innerText;
   }
-  classNames.length && newElement.classList.add(...classNames);
+  if (classNames.length) newElement.classList.add(...classNames);
   return newElement;
 }
