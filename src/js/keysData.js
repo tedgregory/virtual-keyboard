@@ -62,10 +62,10 @@ export const KEY_CODES = {
   ShiftRight: getSpecial('Shift', ['key_flex']),
   //
   ControlLeft: getSpecial('Ctrl', ['key_flex']),
-  MetaLeft: getSpecial('Win', ['key_flex'], 'WIN'),
-  AltLeft: getSpecial('Alt', [], 'ALT'),
+  MetaLeft: getSpecial('Win', [], ''),
+  AltLeft: getSpecial('Alt', [], ''),
   Space: getSpecial('Space', ['key_space'], ' '),
-  AltRight: getSpecial('Alt', ['key_flex'], 'ALT'),
+  AltRight: getSpecial('Alt', ['key_flex'], ''),
   ArrowLeft: getLetter('⇦', '⇦', '⇦', '⇦'),
   ArrowDown: getLetter('⇩', '⇩', '⇩', '⇩'),
   ArrowRight: getLetter('⇨', '⇨', '⇨', '⇨'),

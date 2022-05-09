@@ -48,6 +48,9 @@ export default class Keyboard {
     kbwrapper.append(
       createDomNode('h2', 'Press CTRL + SHIFT to switch layout'),
     );
+    kbwrapper.append(
+      createDomNode('p', 'Created in Windows 10, Ubuntu 20, Chrome'),
+    );
     this.domElements.wrapper.append(kbwrapper);
   };
 
@@ -102,6 +105,10 @@ export default class Keyboard {
       // handle CAPS LOCK
     } else if (['CapsLock'].includes(currentKey.keyId)) {
       this.capsLockHandler(event, currentKey);
+      // handle Delete
+    } else if (['MetaLeft'].includes(currentKey.keyId)) {
+      event.preventDefault();
+      currentKey.renderEvent(event);
       // handle Delete
     } else if (['Delete'].includes(currentKey.keyId)) {
       currentKey.renderEvent(event);
