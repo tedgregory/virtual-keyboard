@@ -13,14 +13,14 @@
     "eslint-plugin-import": "^2.26.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tedgregory/virtual-keyboard.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "tedgregory",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tedgregory/virtual-keyboard/issues"

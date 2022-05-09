@@ -123,14 +123,6 @@ export default class Keyboard {
         event.preventDefault();
         this.updateTextField(event, currentKey, -1);
       }
-      // handle arrows
-    // } else if (/^Arrow/.test(currentKey.keyId)) {
-    //   currentKey.renderEvent(event);
-    //   // simulate default key event
-    //   if (event.type === 'mousedown') {
-    //     currentKey.simulateKeyPress();
-    //   }
-    //   // handle all other inputs
     } else {
       event.preventDefault();
       currentKey.renderEvent(event);
@@ -183,7 +175,6 @@ export default class Keyboard {
       textArea.selectionStart = selection.start + currentValue.length;
     }
     textArea.selectionEnd = textArea.selectionStart;
-    // console.log(typeof currentValue.length);
   };
 
   capsLockHandler = (event, key) => {
@@ -224,15 +215,6 @@ export default class Keyboard {
         this.setKeysText();
       }
       this.isCtrl = true;
-      // keep it pressed if pressed with mouse
-      // if (event.type === "mousedown") {
-      //   if (!this.isMouseClicked) {
-      //     this.isMouseClicked = key;
-      //   } else if (this.isMouseClicked === key) {
-      //     this.isMouseClicked = false;
-      //     this.isShift = false;
-      //   }
-      // }
     } else if (['mouseup', 'keyup', 'mouseout'].includes(event.type)) {
       // if (this.isMouseClicked !== key) {
       this.isCtrl = false;
