@@ -58,7 +58,7 @@ export const KEY_CODES = {
   Comma: getLetter('б', 'Б', ',', '<'),
   Period: getLetter('ю', 'Ю', '.', '>'),
   Slash: getLetter('.', ',', '/', '?'),
-  ArrowUp: getLetter('🠕', '🠕', '🠕', '🠕'),
+  ArrowUp: getLetter('⇧', '⇧', '⇧', '⇧'),
   ShiftRight: getSpecial('Shift', ['key_flex']),
   //
   ControlLeft: getSpecial('Ctrl', ['key_flex']),
@@ -66,9 +66,9 @@ export const KEY_CODES = {
   AltLeft: getSpecial('Alt', [], 'ALT'),
   Space: getSpecial('Space', ['key_space'], ' '),
   AltRight: getSpecial('Alt', ['key_flex'], 'ALT'),
-  ArrowLeft: getLetter('🠔', '🠔', '🠔', '🠔'),
-  ArrowDown: getLetter('🠗', '🠗', '🠗', '🠗'),
-  ArrowRight: getLetter('🠖', '🠖', '🠖', '🠖'),
+  ArrowLeft: getLetter('⇦', '⇦', '⇦', '⇦'),
+  ArrowDown: getLetter('⇩', '⇩', '⇩', '⇩'),
+  ArrowRight: getLetter('⇨', '⇨', '⇨', '⇨'),
   ControlRight: getSpecial('Ctrl', []),
 };
 
