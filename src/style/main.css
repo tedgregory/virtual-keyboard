@@ -186,8 +186,10 @@ p {
 }
 
 .pressed {
-  -webkit-box-shadow: 0px 0px 3px #cdcdcd;
-          box-shadow: 0px 0px 3px #cdcdcd;
+  -webkit-box-shadow: 0px 0px 4px #b2b2b2;
+          box-shadow: 0px 0px 4px #b2b2b2;
+  border-color: #ffffff;
+  text-shadow: 0px 0px 5px #07e47d;
 }
 
 .keyboard {
@@ -285,12 +287,12 @@ textarea.keyboard-input:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .key:hover {
-  border-color: rgba(8, 168, 69, 0.3);
+  border-color: rgba(38, 218, 107, 0.2);
 }
 
 .key_flex {
@@ -332,5 +334,9 @@ textarea.keyboard-input:focus {
 
 .key__capslock_active::after {
   background-color: #07e47d;
+}
+
+.pressed {
+  background-color: #ffffff;
 }
 /*# sourceMappingURL=main.css.map */

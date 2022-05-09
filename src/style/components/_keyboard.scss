@@ -10,7 +10,7 @@ $color-dark-3xl: #292929;
 $color-dark-l: #545454;
 $color-dark-xl: #4c4c4c;
 $color-dark-m: #b2b2b2;
-$color-light-green: rgba(8, 168, 69, 0.3);
+$color-light-green: rgba(38, 218, 107, 0.2);
 $color-green: #07e47d;
 
 %box-shadow-panel {
@@ -19,7 +19,9 @@ $color-green: #07e47d;
   border: 1px solid $color-light-xl;
 }
 %box-shadow-pressed {
-  box-shadow: 0px 0px 3px $color-dark-s;
+  box-shadow: 0px 0px 4px $color-dark-m;
+  border-color: $color-light-xl;
+  text-shadow: 0px 0px 5px $color-green;
 }
 
 .keyboard {
@@ -87,7 +89,7 @@ textarea.keyboard-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  transition: all 0.2s;
   &:hover {
     border-color: $color-light-green;
   }
@@ -127,5 +129,5 @@ textarea.keyboard-input {
 }
 .pressed {
   @extend %box-shadow-pressed;
-  //background-color: $color-light-green;
+  background-color: $color-light-xl;
 }
