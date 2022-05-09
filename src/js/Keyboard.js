@@ -88,28 +88,57 @@ export default class Keyboard {
   };
 
   handleKeyEvent(event) {
-    event.preventDefault();
     const currentKey = this.domElements.keyBase[
       `${event.code || event.currentTarget.closest('.key').dataset.keyId}`
     ];
+    if (!currentKey) return;
     // handle shift press
     if (['ShiftLeft', 'ShiftRight'].includes(currentKey.keyId)) {
+      event.preventDefault();
       this.shiftHandler(event, currentKey);
+      // handle Control key
     } else if (['ControlLeft', 'ControlRight'].includes(currentKey.keyId)) {
       this.controlHandler(event, currentKey);
+      // handle CAPS LOCK
     } else if (['CapsLock'].includes(currentKey.keyId)) {
       this.capsLockHandler(event, currentKey);
+      // handle Delete
+    } else if (['Delete'].includes(currentKey.keyId)) {
+      currentKey.renderEvent(event);
+      if (event.type === 'mousedown') {
+        event.preventDefault();
+        this.updateTextField(event, currentKey, 1);
+      }
+      // handle backspace
+    } else if (['Backspace'].includes(currentKey.keyId)) {
+      currentKey.renderEvent(event);
+      if (event.type === 'mousedown') {
+        event.preventDefault();
+        this.updateTextField(event, currentKey, -1);
+      }
+      // handle arrows
+    // } else if (/^Arrow/.test(currentKey.keyId)) {
+    //   currentKey.renderEvent(event);
+    //   // simulate default key event
+    //   if (event.type === 'mousedown') {
+    //     currentKey.simulateKeyPress();
+    //   }
+    //   // handle all other inputs
     } else {
+      event.preventDefault();
       currentKey.renderEvent(event);
       this.updateTextField(event, currentKey);
     }
     this.domElements.textArea.focus();
   }
 
-  updateTextField = (event, key = null) => {
+  updateTextField = (event, key = null, step = 0) => {
     // update only after press, avoid duplication on key/mouseup
     if (!['keydown', 'mousedown'].includes(event.type)) return;
-    const currentValue = key ? key.currentValue : event.key || '';
+    let currentValue = key ? key.currentValue : event.key || '';
+    if (key.keyData.isSystem) {
+      currentValue = key.keyData.currentValue;
+    }
     const { textArea } = this.domElements;
     const selection = {
       start: textArea.selectionStart || 0,
@@ -123,8 +152,29 @@ export default class Keyboard {
           textArea.value.length,
         ) || '',
     };
-    textArea.value = `${selection.beforeSel}${currentValue}${selection.afterSel}`;
-    textArea.selectionStart = selection.start + currentValue.length;
+    // handle Del
+    if (step > 0) {
+      if (selection.start === selection.end) {
+        textArea.value = `${selection.beforeSel}${selection.afterSel.slice(step)}`;
+      } else {
+        textArea.value = `${selection.beforeSel}${selection.afterSel}`;
+      }
+      textArea.selectionStart = selection.start;
+    } else // handle Backspace
+    if (step < 0) {
+      // handle unicodes by pre-switching it to a single char
+      selection.beforeSel.replace(/\\u\d+$/, '#');
+      if (selection.start === selection.end) {
+        textArea.value = `${selection.beforeSel.slice(0, step)}${selection.afterSel}`;
+        textArea.selectionStart = selection.start + step;
+      } else {
+        textArea.value = `${selection.beforeSel}${selection.afterSel}`;
+        textArea.selectionStart = selection.start; // step is a negative value
+      }
+    } else { // input character
+      textArea.value = `${selection.beforeSel}${currentValue}${selection.afterSel}`;
+      textArea.selectionStart = selection.start + currentValue.length;
+    }
     textArea.selectionEnd = textArea.selectionStart;
     // console.log(typeof currentValue.length);
   };

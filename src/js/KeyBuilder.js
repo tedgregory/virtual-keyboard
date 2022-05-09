@@ -41,7 +41,7 @@ export default class KeyBuilder {
     // currentValue = isCaps ? currentValue.toUpperCase() : currentValue.toLowerCase();
     let resultContent = `<div class="key__block-normal">${currentValue}</div>`;
     this.currentValue = currentValue;
-    if (!/(Key|Arline)\.?/.test(this.keyId) && !(/(Bracket|Semicolon|Quote|Comma|Period)\.?/.test(this.keyId) && lang === 'ru')) {
+    if (!/(Key|Arrow)\.?/.test(this.keyId) && !(/(Bracket|Semicolon|Quote|Comma|Period|Back)\.?/.test(this.keyId) && lang === 'ru')) {
       const unshifted = shifted === 'normal' ? 'shifted' : 'normal';
       resultContent += `<div class="key__block-shifted">${this.keyData[lang][unshifted]}</div>`;
     }
@@ -54,5 +54,9 @@ export default class KeyBuilder {
     } else if (['keyup', 'mouseup', 'mouseout'].includes(event.type)) {
       this.getNode().classList.remove('pressed');
     }
+  };
+
+  simulateKeyPress = () => {
+    this.getNode().dispatchEvent(new KeyboardEvent('keypress', { code: this.keyId }));
   };
 }

@@ -1,7 +1,7 @@
 import { getLetter, getSpecial } from './keyboardHelpers.js';
 
 export const KEY_CODES = {
-  // line 1
+  //
   Backquote: getLetter('ё', 'Ё', '`', '~', [], true),
   Digit1: getLetter('1', '!', '1', '!'),
   Digit2: getLetter('2', "'", '2', '@'),
@@ -16,7 +16,7 @@ export const KEY_CODES = {
   Minus: getLetter('-', '_', '-', '_'),
   Equal: getLetter('=', '+', '=', '+'),
   Backspace: getSpecial('Backspace', ['key_flex']),
-  // line 2
+  //
   Tab: getSpecial('Tab', ['key_tab', 'key_flex'], '\t'),
   KeyQ: getLetter('й', 'Й', 'q', 'Q'),
   KeyW: getLetter('ц', 'Ц', 'w', 'W'),
@@ -32,7 +32,7 @@ export const KEY_CODES = {
   BracketRight: getLetter('ъ', 'Ъ', ']', '}'),
   Backslash: getLetter('\\', '/', '\\', '|'),
   Delete: getSpecial('Del', ['key_flex']),
-  // line 3
+  //
   CapsLock: getSpecial('CapsLock', ['key__capslock', 'key_flex']),
   KeyA: getLetter('ф', 'Ф', 'a', 'A'),
   KeyS: getLetter('ы', 'Ы', 's', 'S'),
@@ -46,7 +46,7 @@ export const KEY_CODES = {
   Semicolon: getLetter('ж', 'Ж', ';', ':'),
   Quote: getLetter('э', 'Э', "'", '"'),
   Enter: getSpecial('Enter', ['key_flex'], '\n'),
-  // line 4
+  //
   ShiftLeft: getSpecial('Shift', ['key_flex']),
   KeyZ: getLetter('я', 'Я', 'z', 'Z'),
   KeyX: getLetter('ч', 'Ч', 'x', 'X'),
@@ -58,22 +58,22 @@ export const KEY_CODES = {
   Comma: getLetter('б', 'Б', ',', '<'),
   Period: getLetter('ю', 'Ю', '.', '>'),
   Slash: getLetter('.', ',', '/', '?'),
-  ArlineUp: getLetter('🠕', '🠕', '🠕', '🠕'),
+  ArrowUp: getLetter('🠕', '🠕', '🠕', '🠕'),
   ShiftRight: getSpecial('Shift', ['key_flex']),
-  // line 5
+  //
   ControlLeft: getSpecial('Ctrl', ['key_flex']),
-  MetaLeft: getSpecial('Win', 'WIN', ['key_flex']),
-  AltLeft: getSpecial('Alt', []),
+  MetaLeft: getSpecial('Win', ['key_flex'], 'WIN'),
+  AltLeft: getSpecial('Alt', [], 'ALT'),
   Space: getSpecial('Space', ['key_space'], ' '),
-  AltRight: getSpecial('Alt', ['key_flex']),
-  ArlineLeft: getLetter('🠔', '🠔', '🠔', '🠔'),
-  ArlineDown: getLetter('🠗', '🠗', '🠗', '🠗'),
-  ArlineRight: getLetter('🠖', '🠖', '🠖', '🠖'),
+  AltRight: getSpecial('Alt', ['key_flex'], 'ALT'),
+  ArrowLeft: getLetter('🠔', '🠔', '🠔', '🠔'),
+  ArrowDown: getLetter('🠗', '🠗', '🠗', '🠗'),
+  ArrowRight: getLetter('🠖', '🠖', '🠖', '🠖'),
   ControlRight: getSpecial('Ctrl', []),
 };
 
 export const KEYBOARD_MAP = [
-  [
+  [ // line 1
     'Backquote',
     'Digit1',
     'Digit2',
@@ -89,7 +89,7 @@ export const KEYBOARD_MAP = [
     'Equal',
     'Backspace',
   ],
-  [
+  [// line 2
     'Tab',
     'KeyQ',
     'KeyW',
@@ -106,7 +106,7 @@ export const KEYBOARD_MAP = [
     'Backslash',
     'Delete',
   ],
-  [
+  [// line 3
     'CapsLock',
     'KeyA',
     'KeyS',
@@ -121,7 +121,7 @@ export const KEYBOARD_MAP = [
     'Quote',
     'Enter',
   ],
-  [
+  [// line 4
     'ShiftLeft',
     'KeyZ',
     'KeyX',
@@ -133,18 +133,18 @@ export const KEYBOARD_MAP = [
     'Comma',
     'Period',
     'Slash',
-    'ArlineUp',
+    'ArrowUp',
     'ShiftRight',
   ],
-  [
+  [// line 5
     'ControlLeft',
     'MetaLeft',
     'AltLeft',
     'Space',
     'AltRight',
-    'ArlineLeft',
-    'ArlineDown',
-    'ArlineRight',
+    'ArrowLeft',
+    'ArrowDown',
+    'ArrowRight',
     'ControlRight',
   ],
 ];
