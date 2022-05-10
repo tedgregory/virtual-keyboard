@@ -109,6 +109,10 @@ export default class Keyboard {
     } else if (['MetaLeft'].includes(currentKey.keyId)) {
       event.preventDefault();
       currentKey.renderEvent(event);
+      // handle Alt
+    } else if (['AltLeft', 'AltRight'].includes(currentKey.keyId)) {
+      event.preventDefault();
+      currentKey.renderEvent(event);
       // handle Delete
     } else if (['Delete'].includes(currentKey.keyId)) {
       currentKey.renderEvent(event);
