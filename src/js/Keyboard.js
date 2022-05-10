@@ -105,12 +105,8 @@ export default class Keyboard {
       // handle CAPS LOCK
     } else if (['CapsLock'].includes(currentKey.keyId)) {
       this.capsLockHandler(event, currentKey);
-      // handle Delete
-    } else if (['MetaLeft'].includes(currentKey.keyId)) {
-      event.preventDefault();
-      currentKey.renderEvent(event);
-      // handle Alt
-    } else if (['AltLeft', 'AltRight'].includes(currentKey.keyId)) {
+      // handle Winkey & Alt
+    } else if (['MetaLeft', 'AltLeft', 'AltRight'].includes(currentKey.keyId)) {
       event.preventDefault();
       currentKey.renderEvent(event);
       // handle Delete
