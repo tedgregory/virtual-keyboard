@@ -1,0 +1,54 @@
+.button {
+    @extend %font-serif;
+    @include font(1.7rem, 400, normal, 130%, 0.06em);
+    padding: 15px 45px;
+    display: inline-block;
+    background: $color-primary;
+    border-radius: 100px;
+    color: $color-dark-3xl;
+    text-decoration: none;
+    transition: all .3s;
+    &:hover {
+        background-color: $color-primary-light;
+    }
+    &_nofill {
+        background-color: transparent;
+        padding: 13px 43px;
+        border: 2px solid $color-primary;
+        &:hover {
+            border-color: $color-primary-light;
+        }
+    }
+    &_active, &_active:hover {
+        background: $color-primary !important;
+        border-color: $color-primary !important;
+        cursor: default;
+    }
+    &_disabled, &_disabled:hover {
+        border-color: $color-dark-s !important;
+        background-color: transparent !important;
+        color: $color-dark-s !important;
+        cursor: default;
+    }
+}
+
+.roundbutton {
+    @extend %font-serif;
+    @include font(2rem, 400, normal, 2rem);
+    padding: 0px;
+    text-decoration: none;
+    color: $color-dark-3xl;
+    display:inline-flex;
+    align-items: center; 
+    justify-content: center;  
+    width: 48px;
+    height: 48px;
+    border-radius:100px;
+    border: 2px solid $color-primary;
+    transition: all .3s;
+    &:hover {
+        background-color: $color-primary-light;
+        border-color: $color-primary-light;
+    }
+}
+

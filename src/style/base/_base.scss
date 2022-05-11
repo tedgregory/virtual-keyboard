@@ -1,0 +1,72 @@
+:root {
+    --scrollbar-width : 17px;
+}
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+body {
+    @extend %font-sans-serif;
+    font-size: 1.6em;
+    margin: 0;
+    padding: 0;
+    background: $color-dark-s;
+}
+h1 {
+    font-weight: bold;
+}
+h2 {
+    @extend %font-serif;
+    @include font (4.4rem, 400, normal, 5.7rem);
+    @include media-tab {
+        @include font (2.5rem, 400, normal, 130%, 0.06em);
+        text-align:center;
+    }
+    color: $color-dark-l;
+}
+h3 {
+    @extend %font-serif;
+    @include font (3.5rem, 400, normal, 4.45rem, 0.06em);
+    @include media-tab {
+        @include font (2.5rem, 400, normal, 3.2rem, 0.06em);
+        text-align:center;
+    }
+    color: $color-dark-l;
+}
+h4 {
+    @extend %font-serif;
+    @include font (2rem, 400, normal, 2.3rem, 0.06em);
+    color: $color-dark-l;
+    @include media-tab {
+        @include font (1.5rem, 400, normal, 110%, 0.06em);
+    }
+}
+
+h5 {
+    @extend %font-serif;
+    @include font (1.5rem, 400, normal, 1.7rem, 0.06em);
+    color: $color-dark-l;
+
+}
+p {
+    @extend %font-sans-serif;
+    @include font (1.5rem, 400, normal, 2.4rem);
+    color: $color-dark-xl;
+    @include media-tab {
+        text-align: center;
+    }
+}
+
+.overlay {
+    position:fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom:0;
+    background-color: rgba(41, 41, 41, 0.6);
+}
+
+.body-fix-overflow {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width);
+}
