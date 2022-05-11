@@ -144,7 +144,7 @@ export default class Keyboard {
       end: textArea.selectionEnd || 0,
       whole: textArea.value,
       beforeSel:
-        textArea.value.substring(0, textArea.selectionStart) || textArea.value,
+        textArea.value.substring(0, textArea.selectionStart) || '',
       afterSel:
         textArea.value.substring(
           textArea.selectionEnd,
