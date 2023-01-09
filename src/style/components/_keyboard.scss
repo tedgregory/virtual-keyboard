@@ -1,0 +1,138 @@
+$color-bg-shadow: #ccc;
+$color-bg-shadowl: #eee;
+$color-light-s: #fafafa;
+$color-light-l: #f6f6f6;
+$color-light-xl: #ffffff;
+$color-dark-s: #cdcdcd;
+$color-dark-3xl: #292929;
+$color-dark-l: #545454;
+$color-dark-xl: #4c4c4c;
+$color-dark-m: #b2b2b2;
+$color-light-green: rgba(38, 218, 107, 0.2);
+$color-green: #07e47d;
+
+%box-shadow-panel {
+  box-shadow: 0px 0px 1px $color-dark-m, 1px 1px 3px $color-dark-m,
+    1px 1px 5px $color-light-l inset;
+  border: 1px solid $color-light-xl;
+}
+%box-shadow-pressed {
+  box-shadow: 0px 0px 4px $color-dark-m;
+  text-shadow: 0px 0px 5px $color-light-xl;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  h1,
+  h2 {
+    text-align: center;
+    @extend %font-sans-serif;
+    @include font(1.3rem, 600, normal, 1em);
+    color: $color-dark-xl;
+    margin: 1em 0 0;
+  }
+  p {
+    text-align: center;
+    @extend %font-sans-serif;
+    @include font(1.1rem, 400, normal, 1em);
+    color: $color-dark-l;
+  }
+}
+.keyboard-text {
+  @extend %box-shadow-panel;
+  background-color: $color-light-s;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  width: 900px;
+}
+textarea.keyboard-input {
+  display: block;
+  width: 97%;
+  padding: 10px;
+  height: 100px;
+  resize: none;
+  border: 1px solid $color-dark-s;
+  outline: none;
+  border-radius: 10px;
+  background-color: $color-bg-shadowl;
+  &:focus {
+    background-color: $color-light-xl;
+    box-shadow: 0px 0px 15px $color-light-l inset;
+  }
+}
+.keyboard-area {
+  @extend %box-shadow-panel;
+  width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: $color-light-l;
+  border-radius: 15px;
+  padding: 15px;
+}
+.keyboard-area__line {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.key {
+  @extend %box-shadow-panel;
+  @extend %font-sans-serif;
+  position: relative;
+  background-color: $color-light-s;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+  &:hover {
+    border-color: $color-light-green;
+  }
+
+  &_flex {
+    flex: 1;
+  }
+  &_space {
+    min-width: 334px;
+  }
+}
+.key__block-shifted {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  color: $color-dark-l;
+  font-size: .6em;
+}
+.key__capslock {
+  position: relative;
+  &::after {
+    content: " ";
+    display:block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 5px;
+    height: 5px;
+    background-color: $color-light-l;
+    box-shadow: 1px 1px 2px $color-dark-l inset, 0px 0px 3px $color-dark-s;
+    border: 1px solid $color-light-xl;
+    border-radius: 50%;
+  }
+  &_active::after {
+    background-color: $color-green;
+  }
+}
+.pressed {
+  @extend %box-shadow-pressed;
+  background-color: $color-light-green;
+}
